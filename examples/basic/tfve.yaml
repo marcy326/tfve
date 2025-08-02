@@ -1,0 +1,50 @@
+# tfve.yaml - Terraform Variable Environment Configuration File
+
+# Configuration file version
+version: "1.0"
+
+# Default settings for the entire project
+defaults:
+  # Path to files defining variables common across environments
+  vars_files:
+    - "variables/common.tfvars"
+
+# Secret management configuration
+secrets:
+  # Secret engine to use (v1.0 supports sops only)
+  engine: sops
+  # Path to SOPS configuration file
+  sops_config_path: ".sops.yaml"
+
+# List of environment definitions
+environments:
+  # --- Development Environment ---
+  - name: dev
+    vars_files:
+      - "variables/dev.tfvars"
+    backend:
+      type: local
+
+  # --- Staging Environment ---
+  - name: staging
+    # Inherit settings from dev environment
+    inherits: dev
+    vars_files:
+      - "variables/staging.tfvars"
+    backend:
+      type: local
+
+  # --- Production Environment ---
+  - name: production
+    # Inherit settings from staging environment
+    inherits: staging
+    vars_files:
+      - "variables/production.tfvars"
+    # Example of using remote backend for production
+    backend:
+      type: s3
+      config:
+        bucket: "your-tfstate-bucket"
+        key: "terraform.tfstate"
+        region: "ap-northeast-1"
+        dynamodb_table: "your-terraform-lock-table"

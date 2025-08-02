@@ -1,0 +1,49 @@
+# tfve.yaml サンプル設定ファイル
+
+# 設定ファイルのバージョン
+version: "1.0"
+
+# プロジェクト全体でのデフォルト設定
+defaults:
+  # 環境間で共通の変数を定義したファイルへのパス
+  vars_files:
+    - "terraform/variables/common.tfvars"
+
+# シークレット管理の設定
+secrets:
+  # 使用するシークレットエンジン
+  # v1.0ではsopsのみをサポート
+  engine: sops
+  # SOPSの設定ファイルへのパス
+  sops_config_path: ".sops.yaml"
+
+# 環境定義のリスト
+environments:
+  # --- Staging環境 ---
+  - name: staging
+    # この環境で使用する変数ファイル
+    vars_files:
+      - "terraform/variables/staging.tfvars"
+
+    # Terraformバックエンドの設定
+    # v1.0ではローカル実行を主眼に置くため、`local`タイプを想定
+    backend:
+      type: local
+
+  # --- Production環境 ---
+  - name: production
+    # staging環境の設定を継承
+    inherits: staging
+    
+    vars_files:
+      # staging.tfvarsを上書き・追加するファイル
+      - "terraform/variables/production.tfvars"
+
+    # 本番環境ではS3バックエンドを使用する例
+    backend:
+      type: s3
+      config:
+        bucket: "my-app-tfstate-bucket-prod"
+        key: "global/terraform.tfstate"
+        region: "ap-northeast-1"
+        dynamodb_table: "my-app-terraform-lock-prod"
