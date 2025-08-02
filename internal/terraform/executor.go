@@ -45,18 +45,18 @@ func (e *Executor) executeCommand(ctx context.Context, command string, extraArgs
 
 	// Build command arguments
 	args := []string{command}
-	
+
 	// Add variable file if specified
 	if e.varsFile != "" {
 		args = append(args, fmt.Sprintf("-var-file=%s", e.varsFile))
 	}
-	
+
 	// Add extra arguments
 	args = append(args, extraArgs...)
 
 	// Create command
 	cmd := exec.CommandContext(ctx, terraformPath, args...)
-	
+
 	// Set working directory
 	if e.workingDir != "" {
 		cmd.Dir = e.workingDir
@@ -68,18 +68,18 @@ func (e *Executor) executeCommand(ctx context.Context, command string, extraArgs
 	cmd.Stderr = &stderr
 
 	// Log command execution
-	slog.Info("Executing Terraform command", 
+	slog.Info("Executing Terraform command",
 		"command", strings.Join(append([]string{"terraform"}, args...), " "),
 		"working_dir", e.workingDir)
 
 	// Execute command
 	err = cmd.Run()
-	
+
 	// Print outputs
 	if stdout.Len() > 0 {
 		fmt.Print(stdout.String())
 	}
-	
+
 	if stderr.Len() > 0 {
 		fmt.Fprint(os.Stderr, stderr.String())
 	}

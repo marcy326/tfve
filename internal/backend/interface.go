@@ -13,4 +13,3 @@ type Backend interface {
 	// For local backends (like git), this returns the local path.
 	GetVarsFile(ctx context.Context, path string) (content []byte, err error)
 }
-

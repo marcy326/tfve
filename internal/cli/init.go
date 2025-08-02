@@ -29,7 +29,11 @@ func runInit() error {
 	if _, err := os.Stat(configPath); err == nil {
 		fmt.Printf("File %s already exists. Overwrite? (y/N): ", configPath)
 		var response string
-		fmt.Scanln(&response)
+		_, err := fmt.Scanln(&response)
+		if err != nil {
+			// If there's an input error, default to "no"
+			response = "n"
+		}
 		if response != "y" && response != "Y" {
 			fmt.Println("Operation cancelled.")
 			return nil
