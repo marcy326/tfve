@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/marcy326/tfve/internal/cli"
+	"github.com/marcy326/tivor/internal/cli"
 )
 
 func main() {

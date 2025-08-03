@@ -11,8 +11,8 @@ import (
 func NewInitCmd() *cobra.Command {
 	initCmd := &cobra.Command{
 		Use:   "init",
-		Short: "Generate a tfve.yaml template",
-		Long:  "An interactive command to generate a tfve.yaml template.",
+		Short: "Generate a tivor.yaml template",
+		Long:  "An interactive command to generate a tivor.yaml template.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return runInit()
 		},
@@ -23,7 +23,7 @@ func NewInitCmd() *cobra.Command {
 
 // runInit performs the actual processing of the init command.
 func runInit() error {
-	configPath := "tfve.yaml"
+	configPath := "tivor.yaml"
 
 	// Check if file already exists
 	if _, err := os.Stat(configPath); err == nil {
@@ -41,7 +41,7 @@ func runInit() error {
 	}
 
 	// Template content
-	template := `# tfve.yaml - Terraform Variable Environment Configuration File
+	template := `# tivor.yaml - Terraform Infrastructure Variable Orchestrator Configuration File
 
 # Configuration file version
 version: "1.0"

@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/marcy326/tfve/internal/config"
+	"github.com/marcy326/tivor/internal/config"
 
 	"github.com/spf13/cobra"
 )
@@ -18,16 +18,16 @@ var (
 	globalConfig *config.Config
 )
 
-// NewRootCmd creates the root command for tfve.
+// NewRootCmd creates the root command for tivor.
 func NewRootCmd() *cobra.Command {
 	rootCmd := &cobra.Command{
-		Use:   "tfve",
-		Short: "Terraform Variable Environment orchestration tool",
-		Long: `tfve is an orchestration tool for intuitive, safe, and declarative
+		Use:   "tivor",
+		Short: "Terraform Infrastructure Variable Orchestrator",
+		Long: `tivor is an orchestration tool for intuitive, safe, and declarative
 lifecycle management across multiple Terraform environments.
 
 It adopts a GitOps-First approach and manages all environment configurations
-from a single tfve.yaml configuration file.`,
+from a single tivor.yaml configuration file.`,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
 			setupLogging()
 			// Skip config loading for commands that don't need it
@@ -46,7 +46,7 @@ from a single tfve.yaml configuration file.`,
 	}
 
 	// Define global flags
-	rootCmd.PersistentFlags().StringVarP(&configPath, "config", "c", "tfve.yaml", "Path to configuration file")
+	rootCmd.PersistentFlags().StringVarP(&configPath, "config", "c", "tivor.yaml", "Path to configuration file")
 	rootCmd.PersistentFlags().StringVar(&logLevel, "log-level", "info", "Log level (debug, info, warn, error)")
 
 	// Add subcommands

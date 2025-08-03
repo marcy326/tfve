@@ -1,4 +1,4 @@
-module github.com/marcy326/tfve
+module github.com/marcy326/tivor
 
 go 1.23.3
 

@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/marcy326/tfve/internal/backend"
-	"github.com/marcy326/tfve/internal/backend/local"
-	"github.com/marcy326/tfve/internal/tfvars"
+	"github.com/marcy326/tivor/internal/backend"
+	"github.com/marcy326/tivor/internal/backend/local"
+	"github.com/marcy326/tivor/internal/tfvars"
 	"gopkg.in/yaml.v3"
 )
 
-// LoadConfig loads and parses tfve.yaml from the specified path into Config.
+// LoadConfig loads and parses tivor.yaml from the specified path into Config.
 func LoadConfig(path string) (*Config, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {

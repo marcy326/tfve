@@ -1,4 +1,4 @@
-# tfve.yaml - Terraform Variable Environment Configuration File
+# tivor.yaml - Terraform Infrastructure Variable Orchestrator Configuration File
 
 # Configuration file version
 version: "1.0"

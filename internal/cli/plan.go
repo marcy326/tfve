@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/marcy326/tfve/internal/config"
-	"github.com/marcy326/tfve/internal/terraform"
+	"github.com/marcy326/tivor/internal/config"
+	"github.com/marcy326/tivor/internal/terraform"
 	"github.com/spf13/cobra"
 )
 
@@ -25,9 +25,9 @@ func NewPlanCmd() *cobra.Command {
 and executes terraform plan.
 
 Examples:
-  tfve plan staging
-  tfve plan production
-  tfve plan staging --working-dir=./infrastructure`,
+  tivor plan staging
+  tivor plan production
+  tivor plan staging --working-dir=./infrastructure`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			envName := args[0]
@@ -77,7 +77,7 @@ func runPlan(envName, workingDir string) error {
 
 	// 4. Create temporary variable file
 	slog.Info("Creating temporary variable file")
-	tmpDir, err := os.MkdirTemp("", "tfve-*")
+	tmpDir, err := os.MkdirTemp("", "tivor-*")
 	if err != nil {
 		return fmt.Errorf("failed to create temporary directory: %w", err)
 	}

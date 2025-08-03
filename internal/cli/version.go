@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	// Version is the version of tfve
+	// Version is the version of tivor
 	Version = "0.1.0"
 )
 
@@ -15,10 +15,10 @@ const (
 func NewVersionCmd() *cobra.Command {
 	versionCmd := &cobra.Command{
 		Use:   "version",
-		Short: "Display version information for tfve",
-		Long:  "Display version information for tfve.",
+		Short: "Display version information for tivor",
+		Long:  "Display version information for tivor.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Printf("tfve version %s\n", Version)
+			fmt.Printf("tivor version %s\n", Version)
 		},
 	}
 
