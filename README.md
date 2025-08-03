@@ -1,13 +1,13 @@
-# tfve - Terraform Variable Environment
+# tivor - Terraform Infrastructure Variable Orchestrator
 
 [![Go Version](https://img.shields.io/badge/go-%3E%3D1.22-blue.svg)](https://golang.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**tfve** is an orchestration tool for intuitive, safe, and declarative lifecycle management across multiple Terraform environments. It adopts a GitOps-First approach and manages all environment configurations from a single `tfve.yaml` configuration file.
+**tivor** is an orchestration tool for intuitive, safe, and declarative lifecycle management across multiple Terraform environments. It adopts a GitOps-First approach and manages all environment configurations from a single `tivor.yaml` configuration file.
 
 ## ✨ Key Features
 
-- 🏗️ **Declarative Configuration** - Define all environments in a single `tfve.yaml` file
+- 🏗️ **Declarative Configuration** - Define all environments in a single `tivor.yaml` file
 - 🔄 **Environment Inheritance** - Share and override configurations across environments  
 - 🔀 **Smart Variable Merging** - Automatically merge and override variable files
 - 🎯 **GitOps-First** - Git as the single source of truth for all configurations
@@ -21,32 +21,32 @@
 
 ```bash
 # Build from source
-git clone https://github.com/marcy326/tfve
-cd tfve
-go build -o bin/tfve ./cmd/tfve
+git clone https://github.com/marcy326/tivor
+cd tivor
+go build -o bin/tivor ./cmd/tivor
 ```
 
 ### Basic Usage
 
 1. **Initialize a configuration file:**
    ```bash
-   tfve init
+   tivor init
    ```
 
 2. **Plan for development environment:**
    ```bash
-   tfve plan dev --working-dir=./infrastructure
+   tivor plan dev --working-dir=./infrastructure
    ```
 
 3. **Apply to staging environment:**
    ```bash
-   tfve apply staging --working-dir=./infrastructure
+   tivor apply staging --working-dir=./infrastructure
    ```
 
 ## 📁 Project Structure
 
 ```
-tfve/
+tivor/
 ├── cmd/                     # CLI entry point
 ├── internal/
 │   ├── cli/                # Cobra commands (plan, apply, init, etc.)
@@ -61,7 +61,7 @@ tfve/
 
 ## ⚙️ Configuration
 
-### Sample `tfve.yaml`
+### Sample `tivor.yaml`
 
 ```yaml
 # Configuration file version
@@ -109,7 +109,7 @@ environments:
 
 ### Environment Inheritance
 
-tfve supports powerful environment inheritance patterns:
+tivor supports powerful environment inheritance patterns:
 
 ```
 common.tfvars → dev.tfvars → staging.tfvars → production.tfvars
@@ -126,26 +126,26 @@ Later files override earlier ones, allowing you to:
 
 ```bash
 # Initialize configuration
-tfve init
+tivor init
 
 # Plan infrastructure changes
-tfve plan <environment> [--working-dir=<path>]
+tivor plan <environment> [--working-dir=<path>]
 
 # Apply infrastructure changes  
-tfve apply <environment> [--working-dir=<path>]
+tivor apply <environment> [--working-dir=<path>]
 
 # Manage encrypted secrets
-tfve sops encrypt <file>
-tfve sops decrypt <file>
+tivor sops encrypt <file>
+tivor sops decrypt <file>
 
 # Show version
-tfve version
+tivor version
 ```
 
 ### Global Flags
 
 ```bash
--c, --config string      Path to configuration file (default "tfve.yaml")
+-c, --config string      Path to configuration file (default "tivor.yaml")
     --log-level string   Log level: debug, info, warn, error (default "info")
 ```
 
@@ -159,10 +159,10 @@ Explore the `examples/` directory for complete working examples:
 cd examples/basic/
 
 # Test development environment (1 instance, no monitoring)
-../../bin/tfve plan dev --working-dir=./terraform
+../../bin/tivor plan dev --working-dir=./terraform
 
 # Test staging environment (2 instances, monitoring enabled)  
-../../bin/tfve plan staging --working-dir=./terraform
+../../bin/tivor plan staging --working-dir=./terraform
 ```
 
 The basic example demonstrates:
@@ -185,7 +185,7 @@ The basic example demonstrates:
 
 ## 🔐 Secret Management
 
-tfve integrates with SOPS for secure secret management:
+tivor integrates with SOPS for secure secret management:
 
 ```yaml
 secrets:
@@ -199,7 +199,7 @@ secrets:
 
 ### Variable Processing Pipeline
 
-1. **Load Configuration** - Parse `tfve.yaml` and resolve inheritance
+1. **Load Configuration** - Parse `tivor.yaml` and resolve inheritance
 2. **Read Variable Files** - Load from configured backend  
 3. **Merge Variables** - Smart merging with override precedence
 4. **Decrypt Secrets** - SOPS integration for encrypted values
@@ -208,7 +208,7 @@ secrets:
 
 ### Smart Variable Merging
 
-tfve's revolutionary variable merging handles duplicate variables intelligently:
+tivor's revolutionary variable merging handles duplicate variables intelligently:
 
 ```hcl
 # common.tfvars
@@ -229,8 +229,8 @@ Run the integration tests:
 ```bash
 # Test with examples
 cd examples/basic/
-../../bin/tfve plan dev --working-dir=./terraform
-../../bin/tfve apply staging --working-dir=./terraform
+../../bin/tivor plan dev --working-dir=./terraform
+../../bin/tivor apply staging --working-dir=./terraform
 ```
 
 ## 📋 Requirements
@@ -284,4 +284,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Ready to simplify your Terraform multi-environment workflows?** 🚀
 
-Start with `tfve init` and explore the examples!
+Start with `tivor init` and explore the examples!

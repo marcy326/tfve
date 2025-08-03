@@ -1,13 +1,13 @@
-# Basic tfve Example
+# Basic tivor Example
 
-This example demonstrates core tfve functionality using safe `null_resource` examples that simulate real infrastructure deployment.
+This example demonstrates core tivor functionality using safe `null_resource` examples that simulate real infrastructure deployment.
 
 ## 📁 Files Overview
 
 ```
 basic/
 ├── README.md          # This file
-├── tfve.yaml         # Configuration with environment inheritance
+├── tivor.yaml         # Configuration with environment inheritance
 ├── variables/        # Variable files for each environment
 │   ├── common.tfvars     # Shared across all environments  
 │   ├── dev.tfvars        # Development-specific
@@ -29,26 +29,26 @@ cd examples/basic/
 ### Development Environment
 ```bash
 # Plan for development (1 instance, no monitoring)  
-../../bin/tfve plan dev --working-dir=./terraform
+../../bin/tivor plan dev --working-dir=./terraform
 
 # Apply development configuration
-../../bin/tfve apply dev --working-dir=./terraform
+../../bin/tivor apply dev --working-dir=./terraform
 ```
 
 ### Staging Environment  
 ```bash
 # Plan for staging (2 instances, monitoring enabled)
-../../bin/tfve plan staging --working-dir=./terraform
+../../bin/tivor plan staging --working-dir=./terraform
 
 # Apply staging configuration
-../../bin/tfve apply staging --working-dir=./terraform
+../../bin/tivor apply staging --working-dir=./terraform
 ```
 
 ### Production Environment
 ```bash
 # Plan for production (5 instances, full monitoring, S3 backend)
 # Note: Will fail because S3 backend is not implemented yet
-../../bin/tfve plan production --working-dir=./terraform
+../../bin/tivor plan production --working-dir=./terraform
 ```
 
 ## 🎓 Learning Points
@@ -72,7 +72,7 @@ Variables with the same name are overridden by later files:
 
 ## 🔍 Expected Output
 
-When running `tfve plan staging`, you should see:
+When running `tivor plan staging`, you should see:
 - 2 infrastructure instances
 - 1 monitoring setup resource  
 - Proper tag merging

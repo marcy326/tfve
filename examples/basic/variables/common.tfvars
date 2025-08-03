@@ -1,9 +1,9 @@
 # Common variables across all environments
-project_name = "tfve-demo"
+project_name = "tivor-demo"
 region = "ap-northeast-1"
 
 # Common tags
 common_tags = {
-  Project = "tfve-demo"
-  ManagedBy = "tfve"
+      Project = "tivor-demo"
+    ManagedBy = "tivor"
 }

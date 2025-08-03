@@ -1,6 +1,6 @@
 package config
 
-// Config represents the overall structure of tfve.yaml
+// Config represents the overall structure of tivor.yaml
 type Config struct {
 	Version      string        `yaml:"version"`
 	Defaults     *Defaults     `yaml:"defaults,omitempty"`

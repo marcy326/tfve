@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/marcy326/tfve/internal/backend"
+	"github.com/marcy326/tivor/internal/backend"
 )
 
 // LocalBackend implements Backend interface for local filesystem access

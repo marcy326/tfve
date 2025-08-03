@@ -1,6 +1,6 @@
-# tfve Examples
+# tivor Examples
 
-This directory contains examples and test cases for demonstrating tfve functionality.
+This directory contains examples and test cases for demonstrating tivor functionality.
 
 ## 📁 Directory Structure
 
@@ -15,22 +15,22 @@ This directory contains examples and test cases for demonstrating tfve functiona
 
 2. Test with development environment:
    ```bash
-   tfve plan dev --working-dir=./terraform
+   tivor plan dev --working-dir=./terraform
    ```
 
 3. Test with staging environment (shows inheritance):
    ```bash
-   tfve plan staging --working-dir=./terraform
+   tivor plan staging --working-dir=./terraform
    ```
 
 4. Apply to any environment (safe with null_resource):
    ```bash
-   tfve apply dev --working-dir=./terraform
+   tivor apply dev --working-dir=./terraform
    ```
 
 ## 🎯 What You'll Learn
 
-- How to structure `tfve.yaml` configuration files
+- How to structure `tivor.yaml` configuration files
 - Environment inheritance patterns (common → dev → staging → production)  
 - Variable file organization and merging behavior
 - Integration with existing Terraform projects
@@ -44,4 +44,4 @@ This directory contains examples and test cases for demonstrating tfve functiona
 
 ## 🧪 Testing
 
-These examples serve as both documentation and integration tests for tfve functionality.
+These examples serve as both documentation and integration tests for tivor functionality.

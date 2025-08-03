@@ -15,8 +15,8 @@ func NewSopsCmd() *cobra.Command {
 		Long: `Performs file encryption and decryption using the SOPS library.
 
 Examples:
-  tfve sops encrypt terraform/variables/secrets.tfvars
-  tfve sops decrypt terraform/variables/secrets.tfvars.enc`,
+tivor sops encrypt terraform/variables/secrets.tfvars
+tivor sops decrypt terraform/variables/secrets.tfvars.enc`,
 		Args: cobra.RangeArgs(1, 2),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) < 1 {
